@@ -1,18 +1,33 @@
+// BookAdapter.kt
 package com.example.bookshelftest
 
-// BookAdapter.kt
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.bookshelftest.databinding.ItemBookBinding
 
-class BookAdapter(private val books: List<Book>) : RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
+class BookAdapter(private val books: List<Book>) :
+    RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
 
-    inner class BookViewHolder(private val binding: ItemBookBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class BookViewHolder(private val binding: ItemBookBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(book: Book) {
             binding.bookTitle.text = book.volumeInfo.title
-            binding.bookThumbnail.load(book.volumeInfo.imageLinks?.thumbnail?.replace("http", "https"))
+            binding.bookThumbnail.load(
+                book.volumeInfo.imageLinks?.thumbnail?.replace("http", "https")
+            )
+            // Add click listener to the entire item layout
+            binding.root.setOnClickListener {
+                // Get the book's link (you'll need to add this to your data model)
+                val bookLink = book.volumeInfo.infoLink // Assuming you have a 'infoLink' field
+
+                // Open the book's link in a browser
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(bookLink))
+                it.context.startActivity(intent)
+            }
         }
     }
 

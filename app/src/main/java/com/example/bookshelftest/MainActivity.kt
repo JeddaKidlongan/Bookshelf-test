@@ -1,6 +1,6 @@
+// MainActivity.kt
 package com.example.bookshelftest
 
-// MainActivity.kt
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText

@@ -1,6 +1,7 @@
+// BooksViewModel.kt
+
 package com.example.bookshelftest
 
-// BooksViewModel.kt
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
