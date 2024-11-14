@@ -1,0 +1,10 @@
+package com.example.bookshelftest
+
+// BooksApiService.kt
+import retrofit2.http.GET
+import retrofit2.http.Query
+
+interface BooksApiService {
+    @GET("volumes")
+    suspend fun searchBooks(@Query("q") query: String): BooksResponse
+}
